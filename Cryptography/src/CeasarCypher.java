@@ -16,20 +16,31 @@ public class CeasarCypher
 	}
 	public char shift(char data, int shift)
 	{
+		if(Character.isAlphabetic(data))
 		if(data>96)
-			data-=32;
-		data-=65;
-		return (char) (65+(shift+data)%26);
+		{
+			data-=97;
+			return (char) (97+(shift+data)%26);
+		}
+		else
+		{
+			data-=65;
+			return (char) (65+(shift+data)%26);
+		}
+		else
+			return data;
 	}
 	public StringBuilder shift(String data,int shift)
 	{
 		StringBuilder input = new StringBuilder(data);
 
 		StringBuilder output = new StringBuilder("");
+		
 		for(int i = 0;i<input.length();i++)
 		{
 			output.append(shift(input.charAt(i),shift));
 		}
+		
 		return output;
 	}
 	public void encrypt()

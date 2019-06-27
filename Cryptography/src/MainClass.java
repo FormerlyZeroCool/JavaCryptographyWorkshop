@@ -4,11 +4,13 @@ public class MainClass {
 
 	public static void main(String[] args) 
 	{
-		String text = "helloiamandrew";
-		System.out.println(text);
 		try {
-			CeasarCypher ceasar = new CeasarCypher("abcde",'b');
-			System.out.println(ceasar.getEncryptedText());
+			for(int i = 0;i<26;i++)
+			{
+				CeasarCypher ceasar = new CeasarCypher("bsjsf ucbbo uwjs mci id bsjsf ucbbo zsh mci rckb bsjsf ucbbo fib ofcibr obr rsgsfh mci bsjsf ucbbo aoys mci qfm bsjsf ucbbo gom uccrpms bsjsf ucbbo hszz o zws obr vifh mci",(char)(65+i));
+				System.out.println(i+" "+ceasar.getEncryptedText());
+			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

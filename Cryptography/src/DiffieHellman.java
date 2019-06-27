@@ -3,12 +3,12 @@ import java.math.BigInteger;
 public class DiffieHellman 
 {
 	//The magic in Diffie-Hellman is modulo maths
-	//(base^a % p)b % p = base^(ab) % p
-	//(base^b % p)a % p = base^(ba) % p
+	//(base^a % p)^b % p = base^(ab) % p
+	//(base^b % p)^a % p = base^(ba) % p
 	//where base, and p are prime numbers that both parties know
 	//and b and a are secret, and only are known by the party they belong to
 	private int privateKey,partnerPublicKey,sharedSecretKey,base=7;
-	public BigInteger mod = new BigInteger(""+4099);
+	public BigInteger mod = new BigInteger(Integer.toString(4099));
 	public DiffieHellman(int privateKey)
 	{
 		this.privateKey = privateKey;

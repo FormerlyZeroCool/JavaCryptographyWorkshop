@@ -29,6 +29,9 @@ public class Lesson3Examples {
 	    else if (false){
 	    	System.out.println("second case");
 	    }
+	    else if (true){
+	    	System.out.println("Third case");
+	    }
 	    
 	    // if all the if statements are false, else is evaluated.
 	    // this of it as a default

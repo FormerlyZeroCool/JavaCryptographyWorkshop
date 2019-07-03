@@ -10,25 +10,35 @@ public class CeasarCypher
 		this.encryptedText = new StringBuilder();
 		if(!Character.isAlphabetic(key))
 		{
-			throw new Exception("Error please enter a alpha character");
+			throw new Exception("Used non Alpha key for Ceasar Cyper");
 		}
 		
 	}
 	public char shift(char data, int shift)
 	{
+		char shiftedData = data;
 		if(Character.isAlphabetic(data))
-		if(data>96)
 		{
-			data-=97;
-			return (char) (97+(shift+data)%26);
+			if(data>96)
+			{
+				data-=97;
+				if((shift+data)<0)
+					shiftedData = (char) (97+26+(shift+data)%26);
+					else
+						shiftedData = (char) (97+(shift+data)%26);
+			}
+			else
+			{
+				data-=65;
+				if((shift+data)<0)
+					shiftedData = (char) (65+26+(shift+data)%26);
+					else
+						shiftedData = (char) (65+(shift+data)%26);
+			}
+			System.out.print((char)(data+65)+"->"+shiftedData+' ');
 		}
-		else
-		{
-			data-=65;
-			return (char) (65+(shift+data)%26);
-		}
-		else
-			return data;
+
+			return shiftedData;
 	}
 	public StringBuilder shift(String data,int shift)
 	{
@@ -40,14 +50,29 @@ public class CeasarCypher
 		{
 			output.append(shift(input.charAt(i),shift));
 		}
+		System.out.println();
 		
 		return output;
 	}
+	public void decrypt(char key)
+	{
+		if(key>96)
+		{
+			key-=97;
+		}
+		else
+		{
+			key-=65;
+		}
+		this.text = shift(this.text.toString(),(int)key*-1);
+		encrypt();
+	}
 	public void encrypt()
 	{
+		if(key>0)
 		if(key>96)//Lowercase to zero indexed char code
 			key -= 97;
-		else
+		else if(key>65)
 			key-=65;//Uppercase to zero indexed char code
 		this.encryptedText = shift(this.text.toString(),(int) key);
 	}
@@ -56,10 +81,6 @@ public class CeasarCypher
 		this.encrypt();
 		return this.encryptedText.toString();
 	} 
-	public String unencrypt()
-	{
-		return shift(this.encryptedText.toString(),((int) key)).toString();
-	}
 	public String getText() {
 		return this.text.toString();
 	}

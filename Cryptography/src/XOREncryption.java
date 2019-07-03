@@ -10,6 +10,11 @@ public class XOREncryption
 		this.encryptedText= new StringBuilder();
 		this.key = new StringBuilder(key);
 	}
+	public XOREncryption(StringBuilder sbText, String key) {
+		this.text = sbText;
+		this.encryptedText= new StringBuilder();
+		this.key = new StringBuilder(key);
+	}
 	private StringBuilder xor(StringBuilder data)
 	{
 		StringBuilder xored = new StringBuilder();
@@ -48,5 +53,9 @@ public class XOREncryption
 	public void setKey(StringBuilder key) {
 		this.key.setLength(0);
 		this.key.append(key);
+	}
+	public StringBuilder getEncryptedStringBuilder() {
+		this.encrypt();
+		return this.encryptedText;
 	}
 }

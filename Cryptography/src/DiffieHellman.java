@@ -7,7 +7,7 @@ public class DiffieHellman
 	//(base^b % p)^a % p = base^(ba) % p
 	//where base, and p are prime numbers that both parties know
 	//and b and a are secret, and only are known by the party they belong to
-	private int privateKey,partnerPublicKey,sharedSecretKey,base=7;
+	private int privateKey,partnerPublicKey,sharedSecretKey,base=199;
 	public BigInteger mod = new BigInteger(Integer.toString(4099));
 	public DiffieHellman(int privateKey)
 	{
@@ -20,18 +20,20 @@ public class DiffieHellman
 	public void calcSharedKey(int partPubKey)
 	{
 		this.partnerPublicKey = partPubKey;
-		this.sharedSecretKey = pow(partnerPublicKey,privateKey).mod(mod).intValue();
+		this.sharedSecretKey = pow(partnerPublicKey,privateKey).mod(mod).intValue()/*323579*/;
 	}
 	private BigInteger pow(int pBase,int exponent)
-	{
-		BigInteger solution = new BigInteger(""+1);
-		BigInteger base = new BigInteger(""+pBase);
-		
+	{	//fast solution utilizing native library
+		return new BigInteger(""+pBase).pow(exponent);
+		//Very Slow solution
+		/*Biginteger product = BigInteger("1");
 		for(int i = 0;i<exponent;i++)
 		{
-			solution = solution.multiply(base);
+			product = product.multiply(base);
 		}
-		return solution;
+		
+		return product;
+		*/
 	}
 	public int getsharedKey()
 	{
@@ -39,6 +41,10 @@ public class DiffieHellman
 	}
 	public void printShared()
 	{
-		System.out.println(sharedSecretKey);
+		System.out.println(sharedSecretKey+" Only the players know this, but no one else");
+	}
+	public int getPrivateKey() {
+		// TODO Auto-generated method stub
+		return privateKey;
 	}
 }
